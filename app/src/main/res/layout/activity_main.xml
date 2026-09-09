@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <com.taile.knot.ui.custom.PolaroidView
+            android:id="@+id/polaroidView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:polaroidSrc="@drawable/sample3"
+            app:showTape="true"
+            app:tiltAngle="2.0"
+            app:tiltDirection="right" />
+
+
+        <com.taile.knot.ui.custom.PolaroidView
+            android:id="@+id/polaroidView2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:polaroidSrc="@drawable/sample4"
+            app:showTape="true"
+            app:tiltAngle="3.0"
+            app:tiltDirection="left" />
+        <com.taile.knot.ui.custom.PolaroidView
+            android:id="@+id/polaroidView32"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:polaroidSrc="@drawable/sample2"
+            app:showTape="true"
+            app:tiltAngle="3.0"
+            app:tiltDirection="right" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Màu hồng pastel hơi trong suốt (Hex code: #D9 + mã màu hồng) -->
+    <solid android:color="#D9F07C82" />
+
+    <!-- Bo nhẹ mép băng dính -->
+    <corners android:radius="2dp" />
+</shape>

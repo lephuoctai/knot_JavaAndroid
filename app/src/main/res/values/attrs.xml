@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PolaroidView">
+        <!-- Ảnh truyền vào (nếu set trực tiếp trong XML) -->
+        <attr name="polaroidSrc" format="reference" />
+
+        <!-- Hướng nghiêng: none (thẳng), left (nghiêng trái), right (nghiêng phải) -->
+        <attr name="tiltDirection" format="enum">
+            <enum name="none" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+
+        <!-- Góc xoay tùy chỉnh (đơn vị độ, mặc định là 2.5) -->
+        <attr name="tiltAngle" format="float" />
+
+        <!-- Ẩn/hiện miếng dán Washi Tape -->
+        <attr name="showTape" format="boolean" />
+    </declare-styleable>
+</resources>

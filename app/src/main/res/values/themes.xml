@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Đổi DayNight thành Light -->
+    <style name="Theme.Knot" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/background</item>
+
+        <!-- Áp dụng font toàn app -->
+        <item name="fontFamily">@font/iosevka_charon</item>
+        <item name="android:fontFamily">@font/iosevka_charon</item>
+    </style>
+</resources>
