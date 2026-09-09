@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures { viewBinding = true }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -41,4 +41,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Lifecycle (ViewModel & LiveData) cho MVVM
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.8.4")
+
+    // Glide hỗ trợ load & cache ảnh mượt mà
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
 }
