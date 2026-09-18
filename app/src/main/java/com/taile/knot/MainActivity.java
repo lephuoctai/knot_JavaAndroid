@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
         binding.rvTimeline.setLayoutManager(new LinearLayoutManager(this));
         binding.rvTimeline.addItemDecoration(new RopeItemDecoration());
         binding.rvTimeline.setAdapter(adapter);
+        // Gắn sự kiện lướt xuống cuối danh sách knot
+        binding.fabQuickAction.setOnClickListener(v -> {
+            int lastPosition = binding.rvTimeline.getAdapter().getItemCount() - 1;
+
+            if (lastPosition >= 0) {
+                binding.rvTimeline.smoothScrollToPosition(lastPosition);
+            }
+        });
 
         // 2. Khởi tạo ViewModel & Observe LiveData
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
