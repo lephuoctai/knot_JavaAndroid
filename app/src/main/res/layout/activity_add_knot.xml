@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="40dp">
+
+        <!-- SỢI DÂY THỪNG TREO KHUNG ẢNH TỪ ĐỈNH -->
+        <View
+            android:id="@+id/viewRope"
+            android:layout_width="3dp"
+            android:layout_height="36dp"
+            android:background="#8A674A"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/knotPin"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/bg_knot_node"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="@id/viewRope"
+            app:layout_constraintEnd_toEndOf="@id/viewRope"
+            app:layout_constraintStart_toStartOf="@id/viewRope"
+            app:layout_constraintTop_toTopOf="@id/viewRope" />
+
+        <!-- CỤM KHUNG POLAROID CHỌN ẢNH -->
+        <FrameLayout
+            android:id="@+id/layoutImagePicker"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewRope">
+
+            <com.taile.knot.ui.custom.PolaroidView
+                android:id="@+id/polaroidPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:polaroidSrc="@drawable/sample11"
+                app:showTape="true"
+                app:tiltAngle="2.0"
+                app:tiltDirection="right" />
+
+            <TextView
+                android:id="@+id/tvAddPhotoHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="+ Ảnh"
+                android:elevation="6dp"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- SỢI DÂY NỐI TỪ ẢNH XUỐNG CÁC Ô NHẬP LIỆU -->
+        <View
+            android:id="@+id/viewRopeBottom"
+            android:layout_width="3dp"
+            android:layout_height="24dp"
+            android:background="#8A674A"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutImagePicker" />
+
+        <!-- Ô CHỌN NGÀY KỶ NIỆM -->
+        <LinearLayout
+            android:id="@+id/btnDatePicker"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:clickable="true"
+            android:elevation="2dp"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/viewRopeBottom">
+
+            <TextView
+                android:id="@+id/tvSelectedDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Thời điểm là"
+                android:textColor="@color/gray"
+                android:textColorHint="#9E9E9E"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                app:tint="@color/pink600" />
+        </LinearLayout>
+
+        <!-- Ô NHẬP KÝ SỰ / TIN NHẮN -->
+        <LinearLayout
+            android:id="@+id/layoutMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btnDatePicker">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tin nhắn"
+                android:textColor="@color/pink600"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@null"
+                android:gravity="top|start"
+                android:hint="Viết ở đây nha"
+                android:lineSpacingExtra="4dp"
+                android:minLines="4"
+                android:textColor="@color/gray"
+                android:textColorHint="#BDBDBD"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- NÚT LƯU KỶ NIỆM "+ BUỘC CHẶT LẠI NÈ" -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/pink600"
+            android:elevation="3dp"
+            android:paddingHorizontal="28dp"
+            android:text="+ Buộc chặt lại nè"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutMessage" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/pink600"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnSubmit"
+            app:layout_constraintEnd_toEndOf="@id/btnSubmit"
+            app:layout_constraintStart_toStartOf="@id/btnSubmit"
+            app:layout_constraintTop_toTopOf="@id/btnSubmit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

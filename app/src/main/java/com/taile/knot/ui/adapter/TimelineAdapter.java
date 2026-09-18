@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.taile.knot.data.model.Knot;
+import com.taile.knot.databinding.ItemTimelineFooterBinding;
 import com.taile.knot.databinding.ItemTimelineHeaderBinding;
 import com.taile.knot.databinding.ItemTimelineKnotBinding;
 
@@ -22,10 +23,19 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_KNOT = 1;
+    private static final int TYPE_FOOTER = 2;
 
     private final List<Knot> knots = new ArrayList<>();
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    private OnAddKnotClickListener onAddKnotClickListener;
 
+    public interface OnAddKnotClickListener {
+        void onAddKnotClick();
+    }
+
+    public void setOnAddKnotClickListener(OnAddKnotClickListener listener) {
+        this.onAddKnotClickListener = listener;
+    }
     public void submitList(List<Knot> newKnots) {
         knots.clear();
         if (newKnots != null) {
@@ -36,12 +46,14 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        return position == 0 ? TYPE_HEADER : TYPE_KNOT;
+        if (position == 0) return TYPE_HEADER;
+        if (position == knots.size() + 1) return TYPE_FOOTER;
+        return TYPE_KNOT;
     }
 
     @Override
     public int getItemCount() {
-        return knots.size() + 1; // +1 cho Header card ở trên cùng
+        return knots.size() + 2;
     }
 
     @NonNull
@@ -51,6 +63,9 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (viewType == TYPE_HEADER) {
             ItemTimelineHeaderBinding binding = ItemTimelineHeaderBinding.inflate(inflater, parent, false);
             return new HeaderViewHolder(binding);
+        } else if (viewType == TYPE_FOOTER) {
+            ItemTimelineFooterBinding binding = ItemTimelineFooterBinding.inflate(inflater, parent, false);
+            return new FooterViewHolder(binding);
         } else {
             ItemTimelineKnotBinding binding = ItemTimelineKnotBinding.inflate(inflater, parent, false);
             return new KnotViewHolder(binding);
@@ -61,7 +76,10 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HeaderViewHolder) {
             ((HeaderViewHolder) holder).bind(knots);
-        } else if (holder instanceof KnotViewHolder) {
+        } else if (holder instanceof FooterViewHolder) {
+            ((FooterViewHolder) holder).bind();
+        }
+        else if (holder instanceof KnotViewHolder) {
             // Vị trí thực tế trong danh sách knots bị lệch 1 đơn vị do Header
             Knot knot = knots.get(position - 1);
             ((KnotViewHolder) holder).bind(knot, position - 1);
@@ -88,6 +106,24 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 binding.tvStartDate.setText("--/--/----");
                 binding.tvEndDate.setText("--/--/----");
             }
+        }
+    }
+
+    // ================== HOLDER CHO FOOTER =================
+    class FooterViewHolder extends RecyclerView.ViewHolder {
+        private final ItemTimelineFooterBinding binding;
+
+        FooterViewHolder(ItemTimelineFooterBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        void bind() {
+            binding.btnAddKnot.setOnClickListener(v -> {
+                if (onAddKnotClickListener != null) {
+                    onAddKnotClickListener.onAddKnotClick();
+                }
+            });
         }
     }
 

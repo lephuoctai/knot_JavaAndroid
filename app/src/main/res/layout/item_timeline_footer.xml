@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingTop="8dp"
+    android:paddingBottom="48dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/centerGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <!-- NÚT THẮT TRÒN Ở ĐẦU MÚT DÂY -->
+    <View
+        android:id="@+id/knotNode"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:background="@drawable/bg_knot_node"
+        android:elevation="3dp"
+        app:layout_constraintEnd_toEndOf="@id/centerGuideline"
+        app:layout_constraintStart_toStartOf="@id/centerGuideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- NÚT BẤM "+ Knot mới" -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddKnot"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/pink600"
+        android:elevation="2dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:paddingHorizontal="24dp"
+        android:text="+ Knot mới"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/knotNode" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.taile.knot;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         // 2. Khởi tạo ViewModel & Observe LiveData
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         viewModel.getKnotsLiveData().observe(this, knots -> {
@@ -59,5 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
         // 3. Nạp mock data để kiểm tra UI
         viewModel.loadMockKnots();
+
+        // Gắn sự kiện thêm knot
+        adapter.setOnAddKnotClickListener(() -> {
+            Log.d("ex", "Footer button clicked!");
+            Intent intent = new Intent(MainActivity.this, AddKnotActivity.class);
+            startActivity(intent);
+        });
     }
 }

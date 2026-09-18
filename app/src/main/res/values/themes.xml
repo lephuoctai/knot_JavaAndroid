@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Đổi DayNight thành Light -->
     <style name="Theme.Knot" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/background</item>
+        <!-- Đổi colorPrimary sang hồng đậm để tương phản cho DatePicker và các control -->
+        <item name="colorPrimary">@color/pink600</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Giữ nguyên màu nền app là hồng pastel nhạt -->
+        <item name="android:windowBackground">@color/background</item>
 
         <!-- Áp dụng font toàn app -->
         <item name="fontFamily">@font/iosevka_charon</item>
