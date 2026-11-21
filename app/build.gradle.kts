@@ -1,6 +1,32 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
+
+fun configuredString(value: String): String = buildString {
+    append('"')
+    value.forEach { character ->
+        when (character) {
+            '\\' -> append("\\\\")
+            '"' -> append("\\\"")
+            '\n' -> append("\\n")
+            '\r' -> append("\\r")
+            else -> append(character)
+        }
+    }
+    append('"')
+}
+
+val localProperties = Properties().apply {
+    rootProject.file("local.properties").takeIf { it.isFile }?.inputStream()?.use { load(it) }
+}
+val supabaseUrl = providers.gradleProperty("knotSupabaseUrl")
+    .orElse(localProperties.getProperty("knotSupabaseUrl").orEmpty())
+val supabaseKey = providers.gradleProperty("knotSupabasePublishableKey")
+    .orElse(localProperties.getProperty("knotSupabasePublishableKey").orEmpty())
+val knotApiUrl = providers.gradleProperty("knotApiUrl")
+    .orElse(localProperties.getProperty("knotApiUrl", "https://mwzkvyackmetcjrpzahu.supabase.co/functions/v1/knot-api"))
 
 android {
     namespace = "com.taile.knot"
@@ -12,12 +38,18 @@ android {
         applicationId = "com.taile.knot"
         minSdk = 29
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        buildConfigField("String", "SUPABASE_URL", configuredString(supabaseUrl.get()))
+        buildConfigField("String", "SUPABASE_PUBLISHABLE_KEY", configuredString(supabaseKey.get()))
+        buildConfigField("String", "KNOT_API_URL", configuredString(knotApiUrl.get()))
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures { viewBinding = true }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false

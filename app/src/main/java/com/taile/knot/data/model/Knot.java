@@ -4,6 +4,7 @@ public class Knot {
     private String id;
     private String description;
     private String imageUrl;
+    private String thumbnailUrl;
     private int imageResId; // Dùng để nạp drawable test hoặc local
     private long memoryDate;
 
@@ -33,6 +34,8 @@ public class Knot {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public String getThumbnailUrl() { return thumbnailUrl; }
+    public void setThumbnailUrl(String url) { thumbnailUrl = url; }
 
     public int getImageResId() { return imageResId; }
     public void setImageResId(int imageResId) { this.imageResId = imageResId; }

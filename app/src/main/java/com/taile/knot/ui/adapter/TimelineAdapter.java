@@ -28,6 +28,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final List<Knot> knots = new ArrayList<>();
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     private OnAddKnotClickListener onAddKnotClickListener;
+    private java.util.function.Consumer<Knot> onPreviewClick;
 
     public interface OnAddKnotClickListener {
         void onAddKnotClick();
@@ -36,6 +37,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void setOnAddKnotClickListener(OnAddKnotClickListener listener) {
         this.onAddKnotClickListener = listener;
     }
+    public void setOnPreviewClick(java.util.function.Consumer<Knot> listener) { onPreviewClick = listener; }
     public void submitList(List<Knot> newKnots) {
         knots.clear();
         if (newKnots != null) {
@@ -151,6 +153,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 binding.tvDescRight.setText(knot.getDescription());
 
                 loadImage(knot, binding.polaroidLeft);
+                binding.polaroidLeft.setOnClickListener(v -> { if(onPreviewClick!=null) onPreviewClick.accept(knot); });
             } else {
                 // Hiển thị nhánh Phải, ẩn nhánh Trái
                 binding.polaroidLeft.setVisibility(View.GONE);
@@ -162,6 +165,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 binding.tvDescLeft.setText(knot.getDescription());
 
                 loadImage(knot, binding.polaroidRight);
+                binding.polaroidRight.setOnClickListener(v -> { if(onPreviewClick!=null) onPreviewClick.accept(knot); });
             }
         }
 
@@ -171,7 +175,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             } else if (knot.getImageUrl() != null && !knot.getImageUrl().isEmpty()) {
                 Glide.with(itemView.getContext())
                         .load(knot.getImageUrl())
-                        .thumbnail(0.1f)
+                        .thumbnail(Glide.with(itemView.getContext()).load(knot.getThumbnailUrl()))
                         .into(polaroidView);
             }
         }

@@ -4,9 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#313131</color>
 
-    <color name="pink100">#FFEEEE</color>
+    <color name="pink100">#FDEBED</color>
     <color name="pink300">#FFBEBE</color>
-    <color name="pink600">#EA7575</color>
+    <color name="pink600">#F16F80</color>
 
     <color name="primary">@color/pink300</color>
     <color name="background">@color/pink100</color>

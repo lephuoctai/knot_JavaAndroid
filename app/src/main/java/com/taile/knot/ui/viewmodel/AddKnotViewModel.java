@@ -18,7 +18,9 @@ public class AddKnotViewModel extends ViewModel {
     public LiveData<Boolean> getIsSuccess() { return isSuccess; }
     public LiveData<String> getErrorMessage() { return errorMessage; }
 
-    public void createKnot(Uri imageUri, String description, long memoryDate) {
+    public void createKnot(com.taile.knot.data.PrototypeStore store,
+                           Uri imageUri, String description, long memoryDate) {
+        if (Boolean.TRUE.equals(isLoading.getValue())) return;
         if (imageUri == null) {
             errorMessage.setValue("Bạn chưa chọn bức ảnh nào nè!");
             return;
@@ -31,25 +33,25 @@ public class AddKnotViewModel extends ViewModel {
 
         isLoading.setValue(true);
 
-        // Mô phỏng quá trình xử lý nén và lưu
         new Thread(() -> {
             try {
-                Thread.sleep(800); // Giả lập độ trễ lưu dữ liệu
-
-                // Đóng gói Model Knot mới
                 Knot newKnot = new Knot(
-                        String.valueOf(System.currentTimeMillis()),
+                        java.util.UUID.randomUUID().toString(),
                         description.trim(),
                         imageUri.toString(),
                         memoryDate
                 );
 
-                // Sau này sẽ gọi KnotRepository.uploadAndSave(newKnot) tại đây
+                if (!store.addKnot(newKnot)) {
+                    isLoading.postValue(false);
+                    errorMessage.postValue("Chưa lưu được. Bạn thử lại nha.");
+                    return;
+                }
                 isLoading.postValue(false);
                 isSuccess.postValue(true);
-            } catch (InterruptedException e) {
+            } catch (org.json.JSONException | RuntimeException e) {
                 isLoading.postValue(false);
-                errorMessage.postValue("Có lỗi xảy ra: " + e.getMessage());
+                errorMessage.postValue(e instanceof IllegalStateException ? e.getMessage() : "Chưa lưu được. Bạn thử lại nha.");
             }
         }).start();
     }

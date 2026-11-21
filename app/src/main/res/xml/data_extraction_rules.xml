@@ -5,11 +5,17 @@
 -->
 <data-extraction-rules>
     <cloud-backup>
+        <exclude domain="sharedpref" path="knot_client_session.xml" />
+        <exclude domain="file" path="offline/" />
         <!-- TODO: Use <include> and <exclude> to control what is backed up.
         <include .../>
         <exclude .../>
         -->
     </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="knot_client_session.xml" />
+        <exclude domain="file" path="offline/" />
+    </device-transfer>
     <!--
     <device-transfer>
         <include .../>

@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Knot</string>
+    <string name="login_email">Email</string>
+    <string name="login_email_hint">Nhập email ở đây nhen</string>
+    <string name="login_action">Bắt đầu nha</string>
+    <string name="login_google">Google</string>
+    <string name="login_invalid_email">Nhập địa chỉ email hợp lệ.</string>
+    <string name="google_no_account_picker">Thiết bị chưa có trình chọn tài khoản Google. Bạn có thể nhập email ở trên.</string>
+    <string name="journey_label">Bắt đầu hành trình</string>
+    <string name="journey_hint">Nhập mã kết nối tại đây &lt;3</string>
+    <string name="journey_connect">Kết nối thôi</string>
+    <string name="journey_create">Tạo hành trình mới nhen</string>
+    <string name="journey_not_found">Chưa tìm thấy hành trình có mã này.</string>
+    <string name="journey_code">Mã: %1$s</string>
+    <string name="save_failed">Chưa lưu được. Bạn thử lại nha.</string>
+    <string name="settings">Cài đặt</string>
+    <string name="journey_copied">Đã sao chép mã hành trình</string>
+    <string name="reload_action">Reload</string>
+    <string name="switch_journey_action">Đổi hành trình</string>
+    <string name="sign_out_action">Đăng xuất</string>
+    <string name="leave_warning_title">Rời hành trình? (1/2)</string>
+    <string name="leave_warning_last">Bạn là thành viên cuối cùng. Rời hoặc đăng xuất sẽ xóa toàn bộ hành trình, ảnh và nội dung trên Knot. Ảnh gốc trong thư viện không bị xóa.</string>
+    <string name="leave_warning_member">Email của bạn sẽ được gỡ khỏi hành trình và mất quyền truy cập. Hành trình được giữ khi còn thành viên; người cuối rời sẽ xóa toàn bộ ảnh và nội dung.</string>
+    <string name="leave_final_title">Xác nhận lần cuối (2/2)</string>
+    <string name="leave_final_last">Bạn chắc chắn rời? Toàn bộ ảnh và nội dung hành trình trên Knot sẽ bị xóa và không thể khôi phục trong app.</string>
+    <string name="leave_final_member">Bạn chắc chắn rời hành trình? Email của bạn sẽ bị gỡ. Nếu danh sách thành viên thay đổi, bạn cần xác nhận lại trước khi thực hiện.</string>
+    <string name="leave_cancel">Ở lại</string>
+    <string name="leave_continue">Tiếp tục</string>
+    <string name="leave_confirm">Xác nhận rời</string>
+    <string name="leave_cleanup_pending">Đã rời. Hành trình đã khóa và đang tiếp tục dọn ảnh, dữ liệu.</string>
+    <string name="photo_add">+ Ảnh</string>
+    <string name="photo_remove">× Ảnh</string>
+    <string name="date_hint">Thời điểm là</string>
+    <string name="message_label">Tin nhắn</string>
+    <string name="message_hint">Viết ở đây nha</string>
+    <string name="tie_knot">+ Buộc chặt lại nè</string>
 </resources>
